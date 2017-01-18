@@ -1,19 +1,23 @@
 package fzc;
 
+import fzc.mapper.MessageMapper;
 import fzc.mapper.UserMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 @SpringBootApplication
-public class RnProjectApplication implements CommandLineRunner{
+@Service
+public class RnProjectApplication implements CommandLineRunner {
 
     private UserMapper userMapper;
+    private MessageMapper messageMapper;
 
 
     public RnProjectApplication(UserMapper userMapper) throws Exception {
         this.userMapper = userMapper;
-
     }
 
     public static void main(String[] args) {
@@ -21,8 +25,14 @@ public class RnProjectApplication implements CommandLineRunner{
     }
 
 
+    @Bean
+    public UserMapper getUserMapper() {
+        return userMapper;
+    }
+
+
     @Override
     public void run(String... strings) throws Exception {
-         System.out.println(userMapper.findUserByPhone("18768127456"));
+//        System.out.println(userMapper.findAll());
     }
 }

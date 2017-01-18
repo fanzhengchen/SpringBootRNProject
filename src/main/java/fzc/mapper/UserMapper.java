@@ -1,9 +1,7 @@
 package fzc.mapper;
 
-import fzc.table.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import fzc.domain.User;
+import org.apache.ibatis.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +14,26 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Select("SELECT * FROM User")
-    public List<User> findAll() throws IOException;
+    /**
+     * 查询所有用户
+     *
+     * @return
+     */
+    @Results(id = "findAll", value = {
+            @Result(property = "userId", column = "user_id")
+    })
+    @Select("select * from User")
+    public List<User> findAll();
 
-    @Select("SELECT (user_id, name, phone, password) FROM User where phone=#{phone}")
-    public User findUserByPhone(@Param("phone") String phone);
+    /**
+     * 根据id 查询用户
+     *
+     * @param userId
+     * @return
+     */
+    @Results(id = "findUserByUserId", value = {
+            @Result(property = "userId", column = "user_id")
+    })
+    @Select("select * from User where user_id=#{userId}")
+    public User findUserByUserId(@Param("userId") String userId);
 }
