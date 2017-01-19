@@ -16,8 +16,9 @@ public class RnProjectApplication implements CommandLineRunner {
     private MessageMapper messageMapper;
 
 
-    public RnProjectApplication(UserMapper userMapper) throws Exception {
+    public RnProjectApplication(UserMapper userMapper, MessageMapper messageMapper) throws Exception {
         this.userMapper = userMapper;
+        this.messageMapper = messageMapper;
     }
 
     public static void main(String[] args) {
@@ -28,6 +29,11 @@ public class RnProjectApplication implements CommandLineRunner {
     @Bean
     public UserMapper getUserMapper() {
         return userMapper;
+    }
+
+    @Bean
+    public MessageMapper getMessageMapper() {
+        return messageMapper;
     }
 
 

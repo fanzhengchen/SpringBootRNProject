@@ -9,17 +9,17 @@ import java.math.BigInteger;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String userId;
+    private Long userId;
     private String name;
     private String password;
-    private String token;
+    private Long token;
 
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -39,11 +39,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getToken() {
+    public Long getToken() {
         return token;
     }
 
-    public void setToken(String token) {
+    public void setToken(Long token) {
         this.token = token;
     }
 }

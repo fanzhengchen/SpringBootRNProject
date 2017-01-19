@@ -26,4 +26,13 @@ public class UserTest {
         List<User> users = userMapper.findAll();
         System.out.println(users);
     }
+
+    @Test
+    public void findUser() {
+        long token = System.currentTimeMillis();
+        User user = userMapper.findUserByUserId(1l);
+
+        userMapper.updateToken(user.getUserId(), token);
+
+    }
 }
